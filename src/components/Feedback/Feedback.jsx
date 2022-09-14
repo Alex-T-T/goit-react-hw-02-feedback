@@ -54,14 +54,13 @@ class FeedbackCounter extends React.Component {
                 <>
 
                 <Section title="Please leave feedback">
-                    
+
                     <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={this.handleIncrement}/>
 
                     <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
 
                 </Section>
             
-                
                 </>
             
         )    
@@ -69,39 +68,3 @@ class FeedbackCounter extends React.Component {
 }
 
 export default FeedbackCounter;
-
-
-
-
-
-
-
-// ============================== 
-// import { Title } from './Title';
-// import { Button } from './Button';
-// import { StatsInfo } from './StatsInfo';
-// import css from './Feedback.module.css';
-
-
-
-// export const Feedback = () => {
-
-//     return (
-//         <div className={css.feedback}>
-            
-//             <Title title='Please leave feedback' />
-            
-//             <div className={css.points}>
-//                 <Button onClick={() => console.log('click on good')} text='Good'></Button>
-//                 <Button text= 'Neutral'></Button>
-//                 <Button text= 'Bad'></Button>
-//             </div>
-            
-//             <Title title='Statistics' />    
-//             <StatsInfo text='Good'/>
-//             <StatsInfo text='Neutral'/>
-//             <StatsInfo text='Bad'/>
-//         </div>
-
-//     )
-// }

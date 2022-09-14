@@ -1,5 +1,8 @@
 // import PropTypes from 'prop-types';
 import React from "react";
+import { Statistics } from "./Statistics";
+import { FeedbackOptions } from './FeedbackOptions';
+import { Section } from './Section';
 
 
 class FeedbackCounter extends React.Component {
@@ -10,26 +13,25 @@ class FeedbackCounter extends React.Component {
         bad: 0,
     }
 
-    handlePositiveIncrement = () => {
-        // this.setState({ good: 3,})
+    handleIncrement = (event) => {
+    
+        
         this.setState((prevState) => {
-            return {
-                good: prevState.good + 1
-            }
-        })
-    }
-    handleNeutralIncrement = () => {
-        this.setState((prevState) => {
-            return {
-                neutral: prevState.neutral + 1
-            }
-        })
-    }
-    handleNegativeIncrement = () => {
-        this.setState((prevState) => {
-            return {
+            let option = event.target.textContent
+
+            if (option === 'Good') {
+                return {
+                    good: prevState.good + 1
+                }
+                
+            } else if (option === 'Neutral') {
+                return {
+                    neutral: prevState.neutral + 1
+                }
+            } else {return {
                 bad: prevState.bad + 1
-            }
+            }}
+
         })
     }
 
@@ -48,25 +50,20 @@ class FeedbackCounter extends React.Component {
 
     render() {
         return (
-            <div className="Counter">
-                <h2 className="CounterTitle">Please leave feedback</h2>
+                
+                <>
 
-                <div className="CounterPositions">
-                    <button type="button" onClick={this.handlePositiveIncrement}>Good</button>
-                    <button type="button" onClick={this.handleNeutralIncrement}>Neutral</button>
-                    <button type="button" onClick={this.handleNegativeIncrement}>Bad</button>
-                </div>
+                <Section title="Please leave feedback">
+                    
+                    <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={this.handleIncrement}/>
 
-                <div className="CounterResults">
-                    <h2 className="CounterResultsStatistics">Statistics</h2>
-                    <p>Good: {this.state.good}</p>
-                    <p>Neutral: {this.state.neutral}</p>
-                    <p>Bad: {this.state.bad}</p>
-                    <p>Total: {this.countTotalFeedback()}</p>
-                    <p>Positive feedback: {!this.countPositiveFeedbackPercentage() ? 0 : this.countPositiveFeedbackPercentage() } %</p>
-                </div>
+                    <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
 
-            </div>
+                </Section>
+            
+                
+                </>
+            
         )    
     }
 }

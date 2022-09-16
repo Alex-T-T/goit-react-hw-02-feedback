@@ -13,27 +13,15 @@ class FeedbackCounter extends React.Component {
         bad: 0,
     }
 
+   
     handleIncrement = (event) => {
-    
+        let position = event.currentTarget.name
+        console.log('event ->', event)
+        console.log('target ->', event.target)
+        console.log('current.target ->', event.currentTarget.name)
         
-        this.setState((prevState) => {
-            let option = event.target.textContent
-
-            if (option === 'Good') {
-                return {
-                    good: prevState.good + 1
-                }
-                
-            } else if (option === 'Neutral') {
-                return {
-                    neutral: prevState.neutral + 1
-                }
-            } else {return {
-                bad: prevState.bad + 1
-            }}
-
-        })
-    }
+        this.setState((prevState) => ({ [position]: prevState[position] + 1 }))
+    };
 
     countTotalFeedback = () => { 
         let totalFeedbacks = 0;
@@ -55,7 +43,7 @@ class FeedbackCounter extends React.Component {
 
                 <Section title="Please leave feedback">
 
-                    <FeedbackOptions options={['Good', 'Neutral', 'Bad']} onLeaveFeedback={this.handleIncrement}/>
+                    <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handleIncrement}/>
 
                     <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
 

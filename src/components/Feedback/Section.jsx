@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import css from './Feedback.module.css'
 
 
 export const Section = ({ title, children }) => {
-    return <section className="Counter">
-        <h2 className='CounterTitle'>{title}</h2>
+    return <section className={css.counter}>
+        <h2 className={css.counterTitle}>{title}</h2>
         {children}
     </section>
 }

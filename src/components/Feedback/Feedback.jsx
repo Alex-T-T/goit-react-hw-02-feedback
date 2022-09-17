@@ -1,8 +1,8 @@
-// import PropTypes from 'prop-types';
 import React from "react";
 import { Statistics } from "./Statistics";
 import { FeedbackOptions } from './FeedbackOptions';
 import { Section } from './Section';
+
 
 
 class FeedbackCounter extends React.Component {
@@ -16,9 +16,6 @@ class FeedbackCounter extends React.Component {
    
     handleIncrement = (event) => {
         let position = event.currentTarget.name
-        console.log('event ->', event)
-        console.log('target ->', event.target)
-        console.log('current.target ->', event.currentTarget.name)
         
         this.setState((prevState) => ({ [position]: prevState[position] + 1 }))
     };
@@ -38,7 +35,6 @@ class FeedbackCounter extends React.Component {
 
     render() {
         return (
-                
                 <>
 
                 <Section title="Please leave feedback">
